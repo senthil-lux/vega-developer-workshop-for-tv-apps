@@ -13,23 +13,13 @@ In the terminal window run the following command:
 cd ~/vegaWorkshop
 
 # Clone the workshop reference app repository
-git clone https://github.com/efahsl/VegaWorkshopApp.git
+git clone https://github.com/senthil-lux/VegaWorkshopApp.git
 
 # Navigate to the workshop reference app repository
 cd VegaWorkshopApp
 ```
 
-## 1.2: Install Vega Steering Document
-
-In the terminal window of the project run the following command:
-
-```bash
- npx -y @amazon-devices/amazon-devices-buildertools-mcp@latest init-context
-```
-
-Then choose your AI Agent from the list to install the MCP and Vega steering document.
-
-## 1.3: Open the vegaWorkshop workspace in AI Agent
+## 1.2: Open the vegaWorkshop workspace in AI Agent
 
 Open the `~/vegaWorkshop` workspace in your AI Agent.
 
@@ -39,7 +29,7 @@ For example, to open the workspace folder in Kiro IDE from terminal window, run 
 kiro ~/vegaWorkshop
 ```
 
-## 1.4: Connect your Vega device
+## 1.3: Connect your Vega device
 
 Connect your Fire TV 4K Select device to your computer, then run the following command in a terminal window to confirm it is connected:
 
@@ -47,7 +37,7 @@ Connect your Fire TV 4K Select device to your computer, then run the following c
  vega device list
 ```
 
-## 1.5: Build and Run the App
+## 1.4: Build and Run the App
 
 Open your AI coding assistant (with the MCP server configured in the prerequisites) and run the following prompt:
 
@@ -56,6 +46,9 @@ Build the release variant of this app using npm and install it on the connected 
 ```
 
 Your AI assistant will use the MCP workflows to build the app and deploy it to your connected Vega device.
+
+Kero example here on how it invokes the MCP tool and amazon-devices-vega-build-and-run skill : 
+<img width="928" height="486" alt="image" src="https://github.com/user-attachments/assets/d67a68de-9b6d-4d09-bd48-f376db0a98e8" />
 
 Once running, you should see the reference app on your device:
 
