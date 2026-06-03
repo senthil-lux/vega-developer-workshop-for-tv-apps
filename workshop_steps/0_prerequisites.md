@@ -26,7 +26,7 @@ You should see your agent's context document and MCP configuration as ✅ Config
 
 **Verify MCP Version**:
 
-Run the following command in the terminal window and ensure version is `0.1.25` or higher.
+Run the following command in the terminal window and ensure version is `1.0.2` or higher.
 
 ```bash
 npx -y @amazon-devices/amazon-devices-buildertools-mcp@latest --version
