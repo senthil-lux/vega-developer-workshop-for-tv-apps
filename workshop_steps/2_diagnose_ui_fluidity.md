@@ -122,6 +122,14 @@ The agent will:
 
 <img width="948" height="1054" alt="image" src="https://github.com/user-attachments/assets/dfb383d7-a683-4de2-be03-3932f2eb62a3" />
 
+# About the Bug
+
+Copy paste below prompt in chat window to ask the coding agent to report the bug details:
+```
+What was the issue fixed to improve UI fluidity ?
+```
+
+You will get detailed report by the agent. 
 
 ---
 
@@ -133,55 +141,10 @@ In this exercise, you learned to:
 3. Verify improvements by re-running KPI measurements
 
 ---
-
-## Coming Soon
-
-1. AI-powered workflow to diagnose key press latency
-2. AI-powered GPU optimization to improve UI fluidity
-
----
-
-<details>
 <summary>Appendix A: MCP Tools Used in Fluidity Diagnosis</summary>
 
-
-            ┌────────────────────────────────────────┐
-            │  vega exec perf kpi-visualizer         │  ← measure
-            │  → trace files + KPI report            │
-            └──────────────┬─────────────────────────┘
-                           │
-        ┌──────────────────┴──────────────────┐
-        │                                     │
-        ▼                                     ▼
-  Read KPI report.                    analyze_perfetto_traces  ← localize (where)
-  Find lowest                         on the worst iteration
-  Granular Fluidity                   → worst 300ms window
-  timestamp.                          (used as fallback only)
-        │                                     │
-        └──────────────────┬──────────────────┘
-                           ▼
-            ┌────────────────────────────────────────┐
-            │  get_app_hot_functions                 │  ← root-cause (what)
-            │  bounded to the bad window             │
-            │  → ranked list of expensive functions  │
-            └──────────────┬─────────────────────────┘
-                           ▼
-                  Code review + fix
-                           │
-                           ▼
-            (back to kpi-visualizer to verify)
-
-
-</details>
+<img width="1248" height="934" alt="image" src="https://github.com/user-attachments/assets/f1dd4976-fc99-4300-ab1b-fb04fb485405" />
 
 ---
 
-<details>
-<summary>Appendix B: About the Bug</summary>
 
-Copy paste below prompt in chat window:
-```
-What was the issue fixed to improve UI fluidity ?
-```
-
-You will get detailed report by the agent. 
