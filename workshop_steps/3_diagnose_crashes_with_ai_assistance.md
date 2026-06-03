@@ -18,7 +18,7 @@ Before starting this exercise, make sure you have:
 
 - [ ] Completed [Clone and Run Reference App](1_clone_and_run_reference_app.md)
 - [ ] Completed [Prerequisites](0_prerequisites.md) and verified the MCP server is connected
-- [ ] A physical Fire TV device connected via ADB (Fire TV Stick, Fire TV Cube, etc.)
+- [ ] A physical Vega device connected 
 - [ ] **Your IDE (VS Code or Kiro) is open in the VegaWorkshopApp directory** - This is required for Vega Studio to automatically pull ACR (crash report) files from the device when crashes occur
 
 ---
@@ -41,8 +41,14 @@ The AI agent will:
 3. Deploy and launch the app on your connected Fire TV device
 
 > **Note:** Release builds are required to generate ACR (Amazon Crash Report) files, which contain the stack traces needed for crash analysis.
+> **Important:** Even if you build via CLI, you should launch the app through Vega Studio (Play icon) to enable automatic crash report collection. Vega Studio automatically pulls ACR files from the device when crashes occur.
 
-**🏁 Checkpoint:** The app should launch and display a home screen. Navigate to the "Advanced Features" screen. You should see three buttons: Play Video, Change Audio Track, and Select Subtitle.
+
+**🏁 Checkpoint:** The app should launch and display a home screen. Navigate to the "Advanced Features" screen. 
+
+<img width="3006" height="1702" alt="image" src="https://github.com/user-attachments/assets/c3d68ab6-adc6-445d-a252-db062f05b2c7" />
+
+You should see three buttons: Play Video, Change Audio Track, and Select Subtitle after clicking advanced feature button.
 
 ---
 
@@ -54,7 +60,7 @@ Press any of the three buttons on the Advanced Features screen to trigger a cras
 - **🔊 Change Audio Track** - Triggers undefined property error
 - **📝 Select Subtitle** - Triggers array bounds error
 
-In a Release build, the app will close immediately. Vega Studio will display a notification that a crash occurred and automatically pull the ACR (Amazon Crash Report) file from the device.
+In a Release build, the app will close immediately. 
 
 ### 🤖 Prompt 2
 
@@ -98,6 +104,27 @@ The AI agent will:
 - ✅ App launches without errors
 - ✅ Pressing the buttons no longer crashes the app
 - ✅ Console warnings appear instead of crashes when edge cases occur
+
+<summary><strong>What tools does the MCP server use for crash analysis?</strong></summary>
+
+The Amazon Devices BuilderTools MCP server provides AI-assisted crash analysis for Vega app developers. The tool helps diagnose app crashes by analyzing stack traces, identifying root causes, and suggesting fixes.
+
+**Current Support:**
+- JavaScript runtime crashes (TypeError, ReferenceError, etc.)
+- vega_analyze_anr_crash (App-Not-Responding (UI thread frozen >5s)
+- vega_analyze_lmk_crash (Low-Memory Killer (OOM))
+- Native crashes (C++ exceptions, segmentation faults)
+
+The crash analysis workflow follows these steps:
+
+1. **Error Type Classification** - Identifies the error category
+2. **Stack Trace Parsing** - Extracts crash location (file, line, function)
+3. **Error Message Analysis** - Explains what the error means
+4. **Crash Location Identification** - Pinpoints the exact line of code
+5. **Symbolication Quality** - Verifies file paths are readable
+6. **Code Origin Analysis** - Determines if crash is in your code or third-party libraries
+7. **Root Cause Analysis** - Provides detailed explanation of why the crash occurred
+
 
 ---
 
@@ -157,32 +184,6 @@ export const AdvancedFeaturesScreen = ({navigation}: Props) => {
 </details>
 
 <details>
-<summary><strong>What tools does the MCP server use for crash analysis?</strong></summary>
-
-The Amazon Devices BuilderTools MCP server provides AI-assisted crash analysis for Vega app developers. The tool helps diagnose app crashes by analyzing stack traces, identifying root causes, and suggesting fixes.
-
-**Current Support:**
-- JavaScript runtime crashes (TypeError, ReferenceError, etc.)
-- Native crashes (C++ exceptions, segmentation faults)
-
-**Coming Soon:**
-- Provide more actionable insights to debug crashes that orginate from the Amazon code
-- ANR (Application Not Responding) diagnostics
-- LMK (Low Memory Killer) diagnostics
-
-The crash analysis workflow follows these steps:
-
-1. **Error Type Classification** - Identifies the error category
-2. **Stack Trace Parsing** - Extracts crash location (file, line, function)
-3. **Error Message Analysis** - Explains what the error means
-4. **Crash Location Identification** - Pinpoints the exact line of code
-5. **Symbolication Quality** - Verifies file paths are readable
-6. **Code Origin Analysis** - Determines if crash is in your code or third-party libraries
-7. **Root Cause Analysis** - Provides detailed explanation of why the crash occurred
-
-</details>
-
-<details>
 <summary><strong>What fixes will the AI agent apply?</strong></summary>
 
 The AI agent will apply defensive programming patterns to prevent crashes:
@@ -233,27 +234,6 @@ const handleSelectSubtitle = (index: number) => {
   console.log(`Selected subtitle: ${subtitle.toUpperCase()}`);
 };
 ```
-
-</details>
-
-<details>
-<summary><strong>Alternative: Build via CLI instead of using the AI agent</strong></summary>
-
-If you prefer to build manually instead of using Prompt 1:
-
-```bash
-git clone https://github.com/efahsl/VegaWorkshopApp
-cd VegaWorkshopApp
-git checkout crash-demo
-npm install
-npm run build:release
-vega device install-app --dir . -b Release
-vega device launch-app --dir .
-```
-
-> **Important:** Even if you build via CLI, you should launch the app through Vega Studio (Play icon) to enable automatic crash report collection. Vega Studio automatically pulls ACR files from the device when crashes occur.
-
-</details>
 
 ---
 
