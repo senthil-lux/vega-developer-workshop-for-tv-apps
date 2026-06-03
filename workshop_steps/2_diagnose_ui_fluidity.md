@@ -18,7 +18,7 @@ Before starting this exercise, make sure you have:
 
 - [ ] Completed [Clone and Run Reference App](1_clone_and_run_reference_app.md)
 - [ ] Completed [Set Up MCP Server](2_set_up_mcp_server.md) and verified the MCP server is connected
-- [ ] A physical Fire TV device connected via ADB (Fire TV Stick, Fire TV Cube, etc.)
+- [ ] A physical Vega device connected 
 ---
 
 ## Step 1: Check Out the Branch
@@ -49,38 +49,69 @@ The agent will:
 Copy and paste this into your AI agent's chat:
 
 ```
-How is my app's UI fluidity performance? Can you check and make improvements using vega workflow?
+How is my app's UI fluidity performance? 
 ```
+
+You might see the report like this : 
+<img width="966" height="1110" alt="image" src="https://github.com/user-attachments/assets/661e8fd3-e146-4474-ac7c-719b32769e83" />
+
 
 The agent will follow the workflow from the MCP server. It will:
 
 1. Read the workflow document `react_native_for_vega_diagnose_ui_fluidity`
 2. Analyze results, identify the time period where the biggest fluidity drop occured
-3. Identify hot functions in the above time period using `get_app_hot_functions`
-4. Apply code optimizations
 
-The agent will ask you several questions during setup. Here are the recommended answers:
+Now copy and paste the below command :
+```
+Can you check and make improvements using vega workflow?
+```
 
-| Agent Question | Recommended Answer | Why |
-|---------------|-------------------|-----|
-| "Using app process name from manifest: `com.amazondeveloper.rnlconfapp`. Is this correct?" | **Yes** | Auto-detected from `manifest.toml` |
-| "Which build type should be used for analysis?" | **Debug** | Debug builds include sourcemaps needed for hot function analysis |
-| "Custom test scenario or default scrolling test?" | **Custom** — use `fluidity_test_scenario/send_d_pad_key_sample_test.py` | This test script sends D-pad key events that reliably trigger the fluidity bug |
+The agent will continue low the workflow from the MCP server. It will:
 
-**🏁 Checkpoint:** The agent should report UI Fluidity KPI as FAILING and apply optimizations to `HomeScreen.tsx`.
+4. Identify hot functions in the above time period using `get_app_hot_functions`
+5. Apply code optimizations
 
----
-
-## Step 3: Verify Improvements
-
-After the agent applies optimizations, it will ask if you'd like to rebuild and re-measure.
-
-### 🤖 Prompt 3
-
-Copy and paste this into your AI agent's chat:
+**🏁 Checkpoint:** The agent should report UI Fluidity KPI FAILING as below 
 
 ```
-Yes. Proceed with rebuilding, reinstalling the app, and remeasuring UI fluidity
+# Hot Function Analysis Results
+
+## Top 3 Hot Functions
+
+### 1. ThumbnailItem
+- **Duration**: 3ms (0.15% of total)
+- **File**: /Volumes/workplace/VegaDeveloperWorkshop/reference/VegaWorkshopApp/src/screens/HomeScreen.tsx
+- **Location**: Line 82, Column 7
+- **App Function**: Yes
+
+### 2. [anonymous]
+- **Duration**: 15ms (0.75% of total)
+- **File**: /Volumes/workplace/VegaDeveloperWorkshop/reference/VegaWorkshopApp/src/screens/HomeScreen.tsx
+- **Location**: Line 77, Column 11
+- **App Function**: Yes
+
+### 3. ThumbnailItem
+- **Duration**: 15ms (0.75% of total)
+- **File**: /Volumes/workplace/VegaDeveloperWorkshop/reference/VegaWorkshopApp/src/screens/HomeScreen.tsx
+- **Location**: Line 65, Column 24
+- **App Function**: Yes
+```
+
+ and apply optimizations to `HomeScreen.tsx`. Below is the fix by Kiro, as exmaple. The reporting might vary based on your coding agent.
+
+ ```
+<img width="992" height="1244" alt="image" src="https://github.com/user-attachments/assets/7f814d95-4fde-479e-b86e-5d5e38466707" />
+```
+After the agent applies optimizations, it will ask if you'd like to rebuild and re-measure. If it builds part of previous prompt itself ,  just ask to remeasure UI fluidity
+
+```
+Yes. Proceed with rebuilding, reinstalling the app, and remeasuring UI fluidity. 
+```
+
+or 
+
+```
+Remeasuring UI fluidity. 
 ```
 
 The agent will:
@@ -88,9 +119,10 @@ The agent will:
 2. Reinstall on your device
 3. Re-run the KPI Visualizer to measure the new fluidity score
 
-**🏁 Checkpoint:** The fluidity score should improve significantly from the baseline toward the ≥99% target. Here's a representative before vs. after comparison:
+**🏁 Checkpoint:** The fluidity score should improve significantly from the baseline toward the ≥99% target. Here's the  report from Kiro post fix:
 
-![UI Fluidity Before vs. After](../images/fluidity-before-after.png)
+<img width="948" height="1054" alt="image" src="https://github.com/user-attachments/assets/dfb383d7-a683-4de2-be03-3932f2eb62a3" />
+
 
 ---
 
