@@ -99,10 +99,9 @@ The agent will continue low the workflow from the MCP server. It will:
 
  and apply optimizations to `HomeScreen.tsx`. Below is the fix by Kiro, as exmaple. The reporting might vary based on your coding agent.
 
- ```
-<img width="992" height="1244" alt="image" src="https://github.com/user-attachments/assets/7f814d95-4fde-479e-b86e-5d5e38466707" />
-```
-After the agent applies optimizations, it will ask if you'd like to rebuild and re-measure. If it builds part of previous prompt itself ,  just ask to remeasure UI fluidity
+<img width="970" height="1344" alt="image" src="https://github.com/user-attachments/assets/37fde8aa-661e-46a9-b56b-dd0982c7e81c" />
+
+After the agent applies optimizations, it will ask if you'd like to rebuild and re-measure. If build was done part of revious prompt itself ,  just ask to remeasure UI fluidity
 
 ```
 Yes. Proceed with rebuilding, reinstalling the app, and remeasuring UI fluidity. 
