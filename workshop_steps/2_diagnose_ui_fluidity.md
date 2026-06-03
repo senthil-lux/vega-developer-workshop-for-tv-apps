@@ -146,15 +146,32 @@ In this exercise, you learned to:
 <summary>Appendix A: MCP Tools Used in Fluidity Diagnosis</summary>
 
 
-This exercise uses three key tools from the Amazon Devices Builder Tools MCP server:
+            ┌────────────────────────────────────────┐
+            │  vega exec perf kpi-visualizer         │  ← measure
+            │  → trace files + KPI report            │
+            └──────────────┬─────────────────────────┘
+                           │
+        ┌──────────────────┴──────────────────┐
+        │                                     │
+        ▼                                     ▼
+  Read KPI report.                    analyze_perfetto_traces  ← localize (where)
+  Find lowest                         on the worst iteration
+  Granular Fluidity                   → worst 300ms window
+  timestamp.                          (used as fallback only)
+        │                                     │
+        └──────────────────┬──────────────────┘
+                           ▼
+            ┌────────────────────────────────────────┐
+            │  get_app_hot_functions                 │  ← root-cause (what)
+            │  bounded to the bad window             │
+            │  → ranked list of expensive functions  │
+            └──────────────┬─────────────────────────┘
+                           ▼
+                  Code review + fix
+                           │
+                           ▼
+            (back to kpi-visualizer to verify)
 
-| Tool | What It Does | When It's Used |
-|------|-------------|----------------|
-| `analyze_perfetto_traces` | Analyzes Perfetto trace files to extract KPI metrics and pinpoint the worst-performing time windows during UI interactions. | To find the exact time period with the worst frame drops |
-| `get_app_hot_functions` | Reads CPU trace data from the Activity Monitor and ranks the most CPU-intensive functions in your app code. Supports time-window filtering so you can focus on the problematic interval. | To identify which functions are burning the most CPU during fluidity dips |
-| `why-did-you-render` (WDYR) | A React debugging library that logs unnecessary component re-renders to the Metro console. Detects when components re-render even though their props/state haven't meaningfully changed. | Optional deeper analysis to catch re-render issues that hot function analysis alone may not surface |
-
-The first two are MCP server tools invoked by the agent automatically. WDYR is an npm package that gets installed into your project and produces logs during app interaction.
 
 </details>
 
@@ -163,115 +180,9 @@ The first two are MCP server tools invoked by the agent automatically. WDYR is a
 <details>
 <summary>Appendix B: About the Bug</summary>
 
-
-The `perf-demo` branch introduces render pipeline overload that causes real frame drops in `HomeScreen.tsx`:
-
-- `FlatList` has been replaced with the native `Carousel` component (from `@amazon-devices/kepler-ui-components`), which continuously submits frames to the render pipeline — giving the fluidity metric something to measure even when JS is busy.
-- Each `ThumbnailItem` renders 12 shadow layer `View` elements (`SHADOW_LAYERS = 12`), each with `shadowColor`, `shadowRadius`, `shadowOpacity`, and `elevation`, plus a nested inner shadow `View` — totaling 24 shadow-rendering operations per thumbnail.
-- Three semi-transparent overlay `View`s are stacked on each thumbnail, forcing alpha blending on every frame.
-- `React.memo` has been removed, inline style objects and `JSON.parse(JSON.stringify())` deep clones are added, and `renderItem`/`itemInfo` are recreated on every render.
-
-Here's what the key problematic code looks like:
-
-```tsx
-const SHADOW_LAYERS = 12;
-
-const ThumbnailItem = ({item, onPress}: ThumbnailItemProps) => {
-  // 12 shadow layer configs created on every render
-  const shadowLayers = Array(SHADOW_LAYERS)
-    .fill(null)
-    .map((_, i) => ({
-      id: `shadow-${i}`,
-      offset: i * 2,
-      radius: 6 + i * 3,
-      opacity: 0.12 + i * 0.025,
-    }));
-
-  return (
-    <Pressable onPress={onPress}>
-      {/* 12 shadow Views + 12 inner shadow Views = 24 shadow ops per thumbnail */}
-      {shadowLayers.map((layer) => (
-        <View key={layer.id} style={[styles.shadowBox, {
-          top: layer.offset, left: layer.offset,
-          shadowRadius: layer.radius, shadowOpacity: layer.opacity,
-        }]}>
-          <View style={styles.innerShadow} />
-        </View>
-      ))}
-      <Image source={{uri: item.images.thumbnail_450x253}} style={styles.thumbnailImage} />
-      {/* 3 overlay Views forcing alpha blending every frame */}
-      <View style={styles.overlay1} />
-      <View style={styles.overlay2} />
-      <View style={styles.overlay3} />
-    </Pressable>
-  );
-};
+Copy paste below prompt in chat window:
+```
+What was the issue fixed to improve UI fluidity ?
 ```
 
-```tsx
-const ContentRow = ({title, items, onItemPress}: ContentRowProps) => {
-  // Deep clone on every render — unnecessary CPU pressure
-  const renderItem = ({item}: {item: MovieItem}) => {
-    const clonedItem = JSON.parse(JSON.stringify(item));
-    return <ThumbnailItem item={clonedItem} onPress={() => onItemPress(item)} />;
-  };
-
-  // Recreated on every render
-  const itemInfo: ItemInfo[] = [{ view: ThumbnailItem, dimension: { width: 415, height: 235 } }];
-  const rowStyle = {marginBottom: 40};
-
-  return (
-    <View style={rowStyle}>
-      <Text style={titleStyle}>{title}</Text>
-      <Carousel data={items} itemDimensions={itemInfo} renderItem={renderItem} />
-    </View>
-  );
-};
-```
-
-This overwhelms the CPU with excessive view hierarchy construction, style recalculation, and object allocation on every render cycle, causing frames to miss their vsync window and producing measurable fluidity degradation (typically ~79% vs. the ≥99% target).
-
-</details>
-
----
-
-<details>
-<summary>Appendix C: Expected Optimizations</summary>
-
-
-The agent typically applies these optimizations based on hot function analysis:
-
-1. Reduce shadow layers from 12 to a lightweight count and pre-compute them as a module-level constant
-2. Remove the 3 semi-transparent overlay `View`s (nearly invisible at 3% opacity)
-3. Eliminate the `JSON.parse(JSON.stringify(item))` deep clone in `renderItem`
-4. Wrap `ThumbnailItem` and `ContentRow` with `React.memo()`
-5. Add `useCallback` for event handlers and `useMemo` for data grouping
-6. Hoist static values (`itemInfo`, `rowStyle`, `titleStyle`) outside the render function
-
-</details>
-
----
-
-<details>
-<summary>Appendix D: Generated Artifacts</summary>
-
-
-After the KPI Visualizer completes, it produces several files in `generated/<timestamp>/` that the agent uses:
-
-```
-generated/<timestamp>/
-├── scrolling-kpi-report-<timestamp>.json    ← KPI report (fluidity %, granular dips, response times)
-├── iter_1_vs_trace                          ← Perfetto trace (used by analyze_perfetto_traces)
-├── iter_1_trace<id>-converted.json          ← JS CPU profiler trace (used by get_app_hot_functions)
-├── iter_2_vs_trace
-├── iter_2_trace<id>-converted.json
-└── ...                                      ← One pair per iteration
-```
-
-| File | Format | Used By | Purpose |
-|------|--------|---------|---------|
-| `scrolling-kpi-report-*.json` | JSON | Agent (direct read) | Contains overall Fluidity %, Granular Fluidity % time-series, and response times per iteration |
-| `iter_*_vs_trace` | Perfetto binary | `analyze_perfetto_traces` | System-level trace with frame submission/vsync data — used to find worst time windows |
-| `iter_*_trace*-converted.json` | Chrome Trace Event JSON | `get_app_hot_functions` | JS CPU profiler data with function names, durations, and source locations |
-
-</details>
+You will get detailed report by the agent. 
