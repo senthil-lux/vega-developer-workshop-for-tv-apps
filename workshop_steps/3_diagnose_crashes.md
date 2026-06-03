@@ -115,15 +115,11 @@ The Amazon Devices BuilderTools MCP server provides AI-assisted crash analysis f
 - vega_analyze_lmk_crash (Low-Memory Killer (OOM))
 - Native crashes (C++ exceptions, segmentation faults)
 
+- 
+
 The crash analysis workflow follows these steps:
 
-1. **Error Type Classification** - Identifies the error category
-2. **Stack Trace Parsing** - Extracts crash location (file, line, function)
-3. **Error Message Analysis** - Explains what the error means
-4. **Crash Location Identification** - Pinpoints the exact line of code
-5. **Symbolication Quality** - Verifies file paths are readable
-6. **Code Origin Analysis** - Determines if crash is in your code or third-party libraries
-7. **Root Cause Analysis** - Provides detailed explanation of why the crash occurred
+<img width="920" height="854" alt="image" src="https://github.com/user-attachments/assets/a23e5db3-286a-4045-88f5-a395006896c7" />
 
 
 ---
