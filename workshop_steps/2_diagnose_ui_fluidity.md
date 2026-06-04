@@ -99,7 +99,7 @@ The agent will continue low the workflow from the MCP server. It will:
 
  and apply optimizations to `HomeScreen.tsx`. Below is the fix by Kiro, as exmaple. The reporting might vary based on your coding agent.
 
-<img width="970" height="1344" alt="image" src="https://github.com/user-attachments/assets/37fde8aa-661e-46a9-b56b-dd0982c7e81c" />
+<img width="600" height="800" alt="image" src="https://github.com/user-attachments/assets/37fde8aa-661e-46a9-b56b-dd0982c7e81c" />
 
 After the agent applies optimizations, it will ask if you'd like to rebuild and re-measure. If build was done part of revious prompt itself ,  just ask to remeasure UI fluidity
 
@@ -120,7 +120,7 @@ The agent will:
 
 **🏁 Checkpoint:** The fluidity score should improve significantly from the baseline toward the ≥99% target. Here's the  report from Kiro post fix:
 
-<img width="948" height="1054" alt="image" src="https://github.com/user-attachments/assets/dfb383d7-a683-4de2-be03-3932f2eb62a3" />
+<img width="600" height="800" alt="image" src="https://github.com/user-attachments/assets/dfb383d7-a683-4de2-be03-3932f2eb62a3" />
 
 # About the Bug
 
