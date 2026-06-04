@@ -53,7 +53,7 @@ How is my app's UI fluidity performance?
 ```
 
 You might see the report like this : 
-<img width="966" height="1110" alt="image" src="https://github.com/user-attachments/assets/661e8fd3-e146-4474-ac7c-719b32769e83" />
+<img width="600" height="800" alt="image" src="https://github.com/user-attachments/assets/661e8fd3-e146-4474-ac7c-719b32769e83" />
 
 
 The agent will follow the workflow from the MCP server. It will:
