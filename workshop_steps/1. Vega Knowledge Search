@@ -5,9 +5,9 @@ You already installed the Amazon Devices Builder Tools MCP server in previous st
 
 Open your AI coding assistant that you installed the MCP and run the following prompt:
 
-```
+`
 How can I do a beta test of my Vega app?, "What are the accessibility guidelines for Vega apps?", "How do I submit my app to the Amazon Appstore?"
-```
+`
 
 ```
 How do I submit my app to the Amazon Appstore?
