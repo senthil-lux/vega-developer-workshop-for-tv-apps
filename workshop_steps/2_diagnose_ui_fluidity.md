@@ -110,7 +110,7 @@ Yes. Proceed with rebuilding, reinstalling the app, and remeasuring UI fluidity.
 or 
 
 ```
-Remeasuring UI fluidity. 
+Remeasure UI fluidity. 
 ```
 
 The agent will:
