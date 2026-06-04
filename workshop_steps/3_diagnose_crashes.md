@@ -4,22 +4,22 @@ In this exercise, you'll download a sample app with intentional crashes, build a
 
 ## Prompts at a Glance
 
-This exercise requires **3 prompts** to your AI agent:
+This exercise requires **4 prompts** to your AI agent:
 
-| # | Type | What You Do |
-|---|------|-------------|
-| 🤖 Prompt 1 | AI Agent | `Checkout the crash-demo branch, clean and build the Release variant via npm, then install and launch the app on my Fire TV device` |
-| 🤖 Prompt 2 | AI Agent | `Why did my app crash?` (after triggering a crash by pressing any button on the Advanced Features screen) |
-| 🤖 Prompt 3 | AI Agent | `Please fix it` |
+| # | Prompt | What It Does |
+|---|--------|--------------|
+| 1 | `Checkout the crash-demo branch, clean and build the Release variant via npm, then install and launch the app on my Fire TV device` | Builds and deploys the crash demo app |
+| 2 | `Why did my app crash?` | Runs the full crash-analysis sequence and explains the root cause (run after triggering a crash on the Advanced Features screen) |
+| 3 | `Before changing anything, explain what fix you would apply for each crash and why.` | Has the agent describe its planned fixes before touching code |
+| 4 | `Please fix it` | Applies defensive fixes and redeploys |
 
 ## Prerequisites
 
 Before starting this exercise, make sure you have:
 
-- [ ] Completed [Clone and Run Reference App](1_clone_and_run_reference_app.md)
+- [ ] Completed [Build, Run, and Manage the App](2_build_run_manage_app_using_prompts.md)
 - [ ] Completed [Prerequisites](0_prerequisites.md) and verified the MCP server is connected
-- [ ] A physical Vega device connected 
-- [ ] **Your IDE (VS Code or Kiro) is open in the VegaWorkshopApp directory** - This is required for Vega Studio to automatically pull ACR (crash report) files from the device when crashes occur
+- [ ] A Fire TV Stick HD or 4K Select running Vega OS with Developer Mode enabled
 
 ---
 
@@ -41,18 +41,22 @@ The AI agent will:
 3. Deploy and launch the app on your connected Fire TV device
 
 > **Note:** Release builds are required to generate ACR (Amazon Crash Report) files, which contain the stack traces needed for crash analysis.
-> **Important:** Even if you build via CLI, you should launch the app through Vega Studio (Play icon) to enable automatic crash report collection. Vega Studio automatically pulls ACR files from the device when crashes occur.
+>
+> **Important:** Even if you build via CLI, launch the app through Vega Studio (Play icon) to enable automatic crash report collection. Vega Studio automatically pulls ACR files from the device when crashes occur.
 
+**🏁 Checkpoint:** The app launches and displays a home screen. Navigate to the **Advanced Features** screen.
 
-**🏁 Checkpoint:** The app should launch and display a home screen. Navigate to the "Advanced Features" screen. 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c3d68ab6-adc6-445d-a252-db062f05b2c7" width="640" alt="Advanced Features screen with three buttons">
+  <br>
+  <em>The Advanced Features screen</em>
+</p>
 
-<img width="3006" height="1702" alt="image" src="https://github.com/user-attachments/assets/c3d68ab6-adc6-445d-a252-db062f05b2c7" />
-
-You should see three buttons: Play Video, Change Audio Track, and Select Subtitle after clicking advanced feature button.
+You should see three buttons: **Play Video**, **Change Audio Track**, and **Select Subtitle**.
 
 ---
 
-## Step 2: Trigger a Crash and Analyze It
+## Step 2: Trigger a Crash
 
 Press any of the three buttons on the Advanced Features screen to trigger a crash:
 
@@ -60,7 +64,13 @@ Press any of the three buttons on the Advanced Features screen to trigger a cras
 - **🔊 Change Audio Track** - Triggers undefined property error
 - **📝 Select Subtitle** - Triggers array bounds error
 
-In a Release build, the app will close immediately. 
+In a Release build, the app will close immediately.
+
+> **Note:** Make sure your IDE (VS Code or Kiro) is open in the `VegaWorkshopApp` directory — this is required so Vega Studio can automatically pull ACR (crash report) files from the device when crashes occur. Otherwise, you can ask your coding agent manually why your app crashed — the agent will pull the latest ACR file and analyze it.
+
+---
+
+## Step 3: Ask the Coding Agent to Explain the Crash
 
 ### 🤖 Prompt 2
 
@@ -70,11 +80,11 @@ After the crash, copy and paste this into your AI agent's chat:
 Why did my app crash?
 ```
 
-The AI agent will use the MCP server to:
-1. Locate the ACR file that Vega Studio pulled from the device
-2. Analyze the stack trace and identify the crash location
+This single prompt kicks off the full MCP crash-analysis sequence. The agent will:
+1. Locate the ACR (Amazon Crash Report) file that Vega Studio pulled from the device
+2. Symbolicate and analyze the stack trace to find the crash location
 3. Explain the root cause in plain language
-4. Scan for similar issues in the codebase
+4. Scan for similar issues elsewhere in the codebase
 
 **Expected Analysis:** The agent will provide a crash summary showing:
 - Error type (TypeError, ReferenceError, etc.)
@@ -84,9 +94,30 @@ The AI agent will use the MCP server to:
 
 ---
 
-## Step 3: Apply the Fixes
+## Step 4: Review the Proposed Fix
+
+Before letting the agent change any code, have it explain *what* it will fix and *why*. This keeps you in control and helps you learn the defensive patterns it applies.
 
 ### 🤖 Prompt 3
+
+Copy and paste this into your AI agent's chat:
+
+```
+Before changing anything, explain what fix you would apply for each crash and why.
+```
+
+The agent will walk through each of the three crashes and describe its planned fix:
+- **Null reference** → add a guard so the handler returns early when no video is selected
+- **Undefined property** → extend the TypeScript interface and check the property exists before use
+- **Array bounds** → add a bounds check before indexing into the array
+
+Read through the reasoning and confirm it matches the root causes from Step 3. When you're satisfied, move on to apply the fix.
+
+---
+
+## Step 5: Apply the Fixes
+
+### 🤖 Prompt 4
 
 Copy and paste this into your AI agent's chat:
 
@@ -105,21 +136,23 @@ The AI agent will:
 - ✅ Pressing the buttons no longer crashes the app
 - ✅ Console warnings appear instead of crashes when edge cases occur
 
-<summary><strong>What tools does the MCP server use for crash analysis?</strong></summary>
+## What Tools Does the MCP Server Use for Crash Analysis?
 
-The Amazon Devices BuilderTools MCP server provides AI-assisted crash analysis for Vega app developers. The tool helps diagnose app crashes by analyzing stack traces, identifying root causes, and suggesting fixes.
+The Amazon Devices Builder Tools MCP server provides AI-assisted crash analysis for Vega app developers. It diagnoses crashes by analyzing stack traces, identifying root causes, and suggesting fixes.
 
-**Current Support:**
+**Current support:**
 - JavaScript runtime crashes (TypeError, ReferenceError, etc.)
-- vega_analyze_anr_crash (App-Not-Responding (UI thread frozen >5s)
-- vega_analyze_lmk_crash (Low-Memory Killer (OOM))
+- `vega_analyze_anr_crash` — App Not Responding (UI thread frozen > 5s)
+- `vega_analyze_lmk_crash` — Low Memory Killer (out of memory)
 - Native crashes (C++ exceptions, segmentation faults)
-
-- 
 
 The crash analysis workflow follows these steps:
 
-<img width="920" height="854" alt="image" src="https://github.com/user-attachments/assets/a23e5db3-286a-4045-88f5-a395006896c7" />
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a23e5db3-286a-4045-88f5-a395006896c7" width="640" alt="Crash analysis workflow diagram">
+  <br>
+  <em>The MCP crash analysis workflow</em>
+</p>
 
 
 ---
@@ -233,4 +266,4 @@ const handleSelectSubtitle = (index: number) => {
 
 ---
 
-**Previous:** [Performance Debugging](2_diagnose_ui_fluidity.md) | **Next:** [Shaka Player Upgrade](4_shaka_player_upgrade.md)
+**Previous:** [Build, Run, and Manage the App](2_build_run_manage_app_using_prompts.md) | **Next:** [Diagnose UI Fluidity](4_diagnose_ui_fluidity.md)
