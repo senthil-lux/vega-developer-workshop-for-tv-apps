@@ -201,4 +201,4 @@ In this exercise, you learned to:
 
 ---
 
-**Previous:** [Diagnose Crashes](3_diagnose_crashes.md) | **Next:** [Detect and Fix Re-renders](5_detect_rerenders.md)
+**Previous:** [Diagnose Crashes](3_diagnose_crashes.md) | **Next:** [Shaka Player Upgrade](5_shaka_player_upgrade.md)

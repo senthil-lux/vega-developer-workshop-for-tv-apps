@@ -13,7 +13,7 @@ We'd love to hear your thoughts! Please take a moment to fill out our feedback s
 3. **Build, Run, and Manage the App** — Built, installed, launched, and verified the reference app on a Vega device using prompts ([Build, Run, and Manage the App](2_build_run_manage_app_using_prompts.md))
 4. **Crash Debugging** — Diagnosed and fixed an app crash using AI-assisted crash analysis via MCP ([Diagnose Crashes](3_diagnose_crashes.md))
 5. **Performance Debugging** — Diagnosed and fixed a UI fluidity issue using MCP-powered AI prompts ([Diagnose UI Fluidity](4_diagnose_ui_fluidity.md))
-6. **Re-render Detection** — Found and fixed unnecessary component re-renders with why-did-you-render via MCP ([Detect and Fix Re-renders](5_detect_rerenders.md))
+6. **Shaka Player Upgrade** — Upgraded the app's Shaka Player from 4.6.18 to 4.8.5-r1.7 via MCP ([Shaka Player Upgrade](5_shaka_player_upgrade.md))
 
 ## Next Steps
 
@@ -21,17 +21,21 @@ We'd love to hear your thoughts! Please take a moment to fill out our feedback s
 - Check out the [MCP Server on npm](https://www.npmjs.com/package/@amazon-devices/amazon-devices-buildertools-mcp) for the latest updates
 - Revisit [Vega Knowledge Search](1_vega_knowledge_search.md) and try the deeper prompts on your own app
 
-## Share Feedback on the MCP Tools
+## Wrap Up the Workshop Session
 
-Beyond the survey above, you can send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant. The MCP server has a built-in feedback workflow — just ask for it in chat using any of these phrases:
-
-```
-I want to provide feedback
-```
+If you set up prompt tracking at the start of the workshop (the bootstrap prompt in the [Prerequisites](0_prerequisites.md)), now's the time to generate your summary. Send your agent:
 
 ```
-How can I provide feedback?
+Wrap up my feedback
 ```
+
+Your agent will append a summary to `PROMPT_WORKSHOP_LOG.md` covering overall stats, friction hotspots, what worked well, recommendations, and a timeline of the session. Share that file with the workshop team — it's the most useful feedback we can get.
+
+> 💡 **Tip:** Keep this summary handy — you can paste it into the feedback survey in the next section when you select answers 2, 3, or 4.
+
+## Share Feedback
+
+Beyond the survey above, you can send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant. Ask your agent for the feedback survey:
 
 ```
 Give feedback about the MCP server
@@ -57,4 +61,4 @@ Thank you for joining the Vega Developer Workshop! We hope the MCP tools and AI-
 
 ---
 
-**Previous:** [Detect and Fix Re-renders](5_detect_rerenders.md)
+**Previous:** [Shaka Player Upgrade](5_shaka_player_upgrade.md)

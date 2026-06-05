@@ -4,3 +4,5 @@ word_to_markdown_instructions.md
 
 reference/RnlConfApp-CheckPoint/.kiro/*
 reference/RnlConfApp-Final/.kiro/*
+generate-post-golden-four/
+templates/

@@ -78,6 +78,45 @@ The MCP server walks your AI assistant through the SDK installation.
 
 ---
 
+## Before You Start: Track Your Feedback
+
+We'd love your feedback on what works (and what doesn't) as you go through this workshop. To make that easy, kick the session off by giving your AI agent the bootstrap prompt below — it tells the agent to log every prompt you run, with timing and outcome, into a markdown file you can review at the end.
+
+### 🤖 Prompt your agent (paste this once, at the start of the workshop):
+
+```
+We are going to work through the Vega Developer Workshop — building, debugging, and optimizing a Vega React Native TV app using the Amazon Devices Builder Tools MCP server. This is a prompt-driven workshop — I'll be giving you instructions and prompts for each step.
+
+First, record the active AI agent name (Claude, Cursor, etc.) and the model used (Claude Opus/Sonnet XX, Codex YY, etc.).
+
+As we go, log the following in a markdown file called PROMPT_WORKSHOP_LOG.md in the project root. For each prompt, record these fields as columns in a markdown table:
+
+- Step: which workshop step this belongs to (e.g., "Build & Run", "Crash Debugging", "UI Fluidity", "Shaka Player Upgrade")
+- Prompt: the exact text prompt I used
+- Start Time: when I issued the prompt
+- End Time: when the task completed
+- Duration: elapsed time
+- Outcome: success, partial/friction, or failed
+- Notes: any friction, errors, workarounds, or observations
+
+If a single prompt involves multiple sub-steps, log the top-level prompt as one row, and optionally add indented sub-rows for notable sub-steps (especially if they hit friction or failed independently).
+
+Keep the file updated after every prompt — don't batch them at the end.
+
+When I say "Wrap up my feedback", produce a summary section at the bottom of PROMPT_WORKSHOP_LOG.md that includes:
+1. **Overall stats** — total prompts, total time, success/partial/fail counts
+2. **Friction hotspots** — the steps or prompts that caused the most trouble, ranked by severity
+3. **What worked well** — prompts/steps that were smooth and fast
+4. **Recommendations** — specific, actionable suggestions for the Amazon Devices Builder Tools / Vega team and the workshop prompt/script authors to improve the experience
+5. **Raw timeline** — a simplified chronological view of the session
+
+The audience for this feedback is Amazon development engineers working on Vega and the Amazon Devices Builder Tools MCP server, plus the workshop prompt/script authors. Be specific and constructive — call out exact error messages, unclear instructions, missing context, or steps that needed manual intervention.
+```
+
+> ℹ️ Once the agent confirms it's tracking, move on to [Vega Knowledge Search](1_vega_knowledge_search.md). When you finish the last exercise, send **`Wrap up my feedback`** to generate the summary.
+
+---
+
 ## Appendix: Verify the MCP Server Is Active in Your AI Assistant
 
 The `check-status` command in Step 1 confirms the MCP server is *configured* on disk. This appendix shows how to confirm it's actually *connected and exposing tools* inside each AI assistant. If the assistant can't see the tools, the workshop prompts won't work.

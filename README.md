@@ -1,5 +1,9 @@
 # Vega Developer Workshop for TV Apps
 
+<p align="center">
+  <img src="./images/workshop-banner.png" width="100%" alt="Vega Developer Workshop — build, verify, and ship TV apps with AI assistance">
+</p>
+
 Welcome! This hands-on workshop walks you through using [Amazon's Vega Developer Tools](https://developer.amazon.com/apps-and-games/vega) and the `@amazon-devices/amazon-devices-buildertools-mcp` MCP server to build, debug, and optimize TV apps with AI assistance.
 
 ## What You'll Do
@@ -13,8 +17,6 @@ You'll clone a pre-built TV streaming reference app and use AI-powered MCP tools
 - Detect and fix unnecessary component re-renders
 
 <img src="./images/screen1-list.png" width="640">
-<img src="./images/screen2-detail.png" width="640">
-<img src="./images/screen3-playback.png" width="640">
 
 ## What You'll Learn
 
@@ -38,7 +40,7 @@ Check out the [Prerequisites](workshop_steps/0_prerequisites.md) page to set up 
 | 2 | **[Build, Run, and Manage the App](workshop_steps/2_build_run_manage_app_using_prompts.md)** | `main` | Clone, build, install, launch, and manage the app via prompts |
 | 3 | **[Diagnose Crashes](workshop_steps/3_diagnose_crashes.md)** | `crash-demo` | Trigger a crash and fix it with AI-assisted ACR analysis |
 | 4 | **[Diagnose UI Fluidity](workshop_steps/4_diagnose_ui_fluidity.md)** | `perf-demo` | Measure, diagnose, and fix a UI fluidity issue |
-| 5 | **[Detect and Fix Re-renders](workshop_steps/5_detect_rerenders.md)** | `rerender-demo` | Find and fix unnecessary re-renders with why-did-you-render |
+| 5 | **[Shaka Player Upgrade](workshop_steps/5_shaka_player_upgrade.md)** | `shaka_player` | Upgrade Shaka Player from 4.6.18 to 4.8.5-r1.7 via MCP |
 | 6 | **[Wrap Up and Feedback](workshop_steps/6_wrap_up_and_feedback.md)** | — | Survey, recap, and where to go next |
 
 ## Getting Started
