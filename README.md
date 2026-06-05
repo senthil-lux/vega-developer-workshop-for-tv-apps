@@ -1,5 +1,4 @@
-# Vega Developer Workshop for TV Apps
-
+# AI Powered Vega App Development and Maintenance
 <p align="center">
   <img src="./images/workshop-banner.png" width="100%" alt="Vega Developer Workshop — build, verify, and ship TV apps with AI assistance">
 </p>
