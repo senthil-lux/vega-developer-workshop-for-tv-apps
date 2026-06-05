@@ -1,14 +1,16 @@
 # Vega Developer Workshop for TV Apps
 
-Welcome! This hands-on workshop walks you through using [Amazon's Vega Developer Tools](https://developer.amazon.com/apps-and-games/vega) and the `@amazon-devices/amazon-devices-buildertools-mcp` MCP server to debug and upgrade TV apps with AI assistance.
+Welcome! This hands-on workshop walks you through using [Amazon's Vega Developer Tools](https://developer.amazon.com/apps-and-games/vega) and the `@amazon-devices/amazon-devices-buildertools-mcp` MCP server to build, debug, and optimize TV apps with AI assistance.
 
 ## What You'll Do
 
-You'll clone a pre-built TV streaming reference app and use AI-powered MCP tools to:
+You'll clone a pre-built TV streaming reference app and use AI-powered MCP tools — entirely through chat prompts — to:
 
-- Debug a UI fluidity / performance issue
-- Debug an app crash
-- Run a Shaka media player upgrade
+- Search the official Vega documentation in plain language
+- Build, install, launch, and manage the app on a device
+- Diagnose and fix an app crash
+- Diagnose and fix a UI fluidity (performance) issue
+- Detect and fix unnecessary component re-renders
 
 <img src="./images/screen1-list.png" width="640">
 <img src="./images/screen2-detail.png" width="640">
@@ -17,43 +19,32 @@ You'll clone a pre-built TV streaming reference app and use AI-powered MCP tools
 ## What You'll Learn
 
 - How to use the `@amazon-devices/amazon-devices-buildertools-mcp` MCP server with AI coding assistants
-- Performance debugging techniques for TV apps using MCP prompts
-- Crash debugging workflows with AI assistance
-- Media player upgrade workflows via MCP
+- App lifecycle workflows (build, install, launch, verify) driven by prompts
+- Crash debugging workflows with AI-assisted ACR analysis
+- Performance debugging techniques for TV apps (UI fluidity, re-renders)
 
 ## Prerequisites
 
-Check out our [Prerequisites](workshop_steps/0_prerequisites.md) page to set up the Vega SDK and MCP server. You will need a Fire TV Stick 4K Select running Vega OS with [Developer Mode](https://developer.amazon.com/docs/vega/0.22/developer-mode.html) enabled to run the workshop exercises.
+Check out the [Prerequisites](workshop_steps/0_prerequisites.md) page to set up the Vega SDK and the MCP server. You'll need a Fire TV Stick HD or 4K Select running Vega OS with [Developer Mode](https://developer.amazon.com/docs/vega/0.22/developer-mode.html) enabled to run the exercises.
 
 ## Workshop Steps
 
-> Each exercise uses a separate branch in the [VegaWorkshopApp](https://github.com/efahsl/VegaWorkshopApp) repository. You'll switch branches between exercises.
+> Several exercises use a separate branch in the [VegaWorkshopApp](https://github.com/senthil-lux/VegaWorkshopApp) repository. The prompt in each step checks out the right branch for you.
 
-0. **[Prerequisites](workshop_steps/0_prerequisites.md)** - Install Vega SDK and configure your environment
-1. **[Clone and Run Reference App](workshop_steps/1_clone_and_run_reference_app.md)** - Clone the workshop app and verify it runs
-2. **[Performance Debugging](workshop_steps/2_diagnose_ui_fluidity.md)** - Checkout the `perf-demo` branch and debug UI fluidity via MCP
-3. **[Crash Debugging](workshop_steps/3_diagnose_crashes_with_ai_assistance.md)** - Checkout the `crash-demo` branch and debug the crash via MCP
-4. **[Shaka Player Upgrade](workshop_steps/4_shaka_player_upgrade.md)** - Download the Vega Video Sample App, check for Shaka Player updates via MCP, and upgrade
-5. **[Wrap Up and Next Steps](workshop_steps/7_wrap_up_and_next_steps.md)** - Survey, recap, and next steps
-
-## Breakout Sessions
-
-After the MCP workshop, choose one of the following hands-on breakout sessions:
-
-- **[Android Web App Migration](workshop_steps/5_android_web_app_migration_breakout_room_steps.md)** - Migrate an Android web app to Vega WebView
-- **[RN 0.83 Preview](workshop_steps/6_rn_0.83_preview.md)** - Upgrade your app to React Native 0.83 on Vega
-
-## Optional: Follow-Up Exercises
-
-6. **[Create a 3 Screen App](workshop_steps/optional-followup-exercises/3_create_3_screen_app.md)** - Build a home screen, details screen, and video player from scratch
-7. **[Performance Testing](workshop_steps/optional-followup-exercises/4_performance_testing.md)** - Run your app on Fire TV Stick and benchmark performance
-8. **[Optimize Re-rendering Performance](workshop_steps/optional-followup-exercises/5_optimize_rerendering_performance.md)** - Detect and fix unnecessary component re-renders
-9. **[Accessibility](workshop_steps/optional-followup-exercises/6_accessibility.md)** - Implement TV accessibility features
+| # | Step | Branch | What You'll Do |
+|---|------|--------|----------------|
+| 0 | **[Prerequisites](workshop_steps/0_prerequisites.md)** | — | Install the Vega SDK and configure the MCP server |
+| 1 | **[Vega Knowledge Search](workshop_steps/1_vega_knowledge_search.md)** | — | Ask the MCP server questions against the official Vega docs |
+| 2 | **[Build, Run, and Manage the App](workshop_steps/2_build_run_manage_app_using_prompts.md)** | `main` | Clone, build, install, launch, and manage the app via prompts |
+| 3 | **[Diagnose Crashes](workshop_steps/3_diagnose_crashes.md)** | `crash-demo` | Trigger a crash and fix it with AI-assisted ACR analysis |
+| 4 | **[Diagnose UI Fluidity](workshop_steps/4_diagnose_ui_fluidity.md)** | `perf-demo` | Measure, diagnose, and fix a UI fluidity issue |
+| 5 | **[Detect and Fix Re-renders](workshop_steps/5_detect_rerenders.md)** | `rerender-demo` | Find and fix unnecessary re-renders with why-did-you-render |
+| 6 | **[Wrap Up and Feedback](workshop_steps/6_wrap_up_and_feedback.md)** | — | Survey, recap, and where to go next |
 
 ## Getting Started
 
-Begin with the [Prerequisites](workshop_steps/0_prerequisites.md) to ensure you have all necessary tools installed, then follow the workshop steps in order.
+Begin with the [Prerequisites](workshop_steps/0_prerequisites.md) to install the required tools, then follow the steps in order. Each page links to the next.
 
 ## Troubleshooting
 
-Running into issues? Check out our [troubleshooting guide](https://developer.amazon.com/docs/vega/0.22/troubleshoot-overview.html) on our [Vega Developer Docs](https://developer.amazon.com/apps-and-games/vega).
+Running into issues? Check the [troubleshooting guide](https://developer.amazon.com/docs/vega/0.22/troubleshoot-overview.html) on the [Vega Developer Docs](https://developer.amazon.com/apps-and-games/vega).

@@ -13,6 +13,7 @@ We'd love to hear your thoughts! Please take a moment to fill out our feedback s
 3. **Build, Run, and Manage the App** — Built, installed, launched, and verified the reference app on a Vega device using prompts ([Build, Run, and Manage the App](2_build_run_manage_app_using_prompts.md))
 4. **Crash Debugging** — Diagnosed and fixed an app crash using AI-assisted crash analysis via MCP ([Diagnose Crashes](3_diagnose_crashes.md))
 5. **Performance Debugging** — Diagnosed and fixed a UI fluidity issue using MCP-powered AI prompts ([Diagnose UI Fluidity](4_diagnose_ui_fluidity.md))
+6. **Re-render Detection** — Found and fixed unnecessary component re-renders with why-did-you-render via MCP ([Detect and Fix Re-renders](5_detect_rerenders.md))
 
 ## Next Steps
 
@@ -56,4 +57,4 @@ Thank you for joining the Vega Developer Workshop! We hope the MCP tools and AI-
 
 ---
 
-**Previous:** [Diagnose UI Fluidity](4_diagnose_ui_fluidity.md)
+**Previous:** [Detect and Fix Re-renders](5_detect_rerenders.md)

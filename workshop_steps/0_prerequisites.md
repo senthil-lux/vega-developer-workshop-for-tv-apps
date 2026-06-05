@@ -54,8 +54,6 @@ For example, in Kiro IDE, click the **Enable MCP** button:
 
 <img src="../images/kiro-ide-enable-mcp.png" height="400">
 
-> For detailed setup instructions and verification checkpoints, see the [MCP Server Setup Reference](references/2_set_up_mcp_server.md).
-
 ## Step 2: Install the Vega SDK (Public)
 
 > ✅ **Already have the Vega SDK installed?** Skip ahead — but verify first using the steps below.

@@ -201,4 +201,4 @@ In this exercise, you learned to:
 
 ---
 
-**Previous:** [Diagnose Crashes](3_diagnose_crashes.md) | **Next:** [Wrap Up and Next Steps](5_wrap_up_and_next_steps.md)
+**Previous:** [Diagnose Crashes](3_diagnose_crashes.md) | **Next:** [Detect and Fix Re-renders](5_detect_rerenders.md)

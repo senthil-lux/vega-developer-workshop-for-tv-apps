@@ -174,4 +174,4 @@ In this exercise, you learned to:
 
 ---
 
-**Previous:** [Diagnose UI Fluidity](4_diagnose_ui_fluidity.md) | **Next:** [Wrap Up and Next Steps](5_wrap_up_and_next_steps.md)
+**Previous:** [Diagnose UI Fluidity](4_diagnose_ui_fluidity.md) | **Next:** [Wrap Up and Feedback](6_wrap_up_and_feedback.md)
