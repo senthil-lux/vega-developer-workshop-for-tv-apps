@@ -9,7 +9,7 @@ Because the Vega Shaka package has to be built from a downloaded release, the up
 | # | Prompt | What It Does |
 |---|--------|--------------|
 | 1 | `Checkout the shaka_player branch, clean previous builds (build and node_modules directories) and build the Release variant via npm. Then install and launch the vega app on my Fire TV device using vega sdk` | Builds and runs the Shaka demo app (Shaka 4.6.18) |
-| 2 | `What Shaka Player versions are available for Vega, and which version is this app currently using?` | Lists the Vega-patched Shaka versions and detects the current one |
+| 2 | `What Shaka Player versions are available for Vega ?` | Lists the Vega-patched Shaka versions and detects the current one |
 | 3 | `Upgrade Shaka Player in this app to 4.8.5-r1.7 — download the Vega release, build it, swap the dist into the app, then clean build and run on my Fire TV device.` | Downloads, builds, swaps in the new Shaka, rebuilds, and runs |
 
 ## Prerequisites
@@ -38,7 +38,7 @@ The agent will:
 3. Build the app in Release mode
 4. Deploy and launch it on your connected Fire TV device
 
-**🏁 Checkpoint:** The app launches and plays adaptive video. This build uses **Shaka Player 4.6.18** — that's the version we're about to upgrade.
+**🏁 Checkpoint:** The app launches and plays adaptive video. This build uses **Shaka Player 4.6.18**.
 
 ---
 
@@ -49,7 +49,7 @@ The agent will:
 Copy and paste this into your AI agent's chat:
 
 ```
-What Shaka Player versions are available for Vega, and which version is this app currently using?
+What Shaka Player versions are available for Vega?
 ```
 
 The agent uses the MCP server to read the official Vega media-player documentation and report the available Vega-patched Shaka releases, along with the version this app currently uses (4.6.18). The available release families are roughly:
