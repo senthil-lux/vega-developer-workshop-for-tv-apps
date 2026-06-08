@@ -9,7 +9,7 @@ Because the Vega Shaka package has to be built from a downloaded release, the up
 | # | Prompt | What It Does |
 |---|--------|--------------|
 | 1 | `Checkout the shaka_player branch, clean previous builds (build and node_modules directories) and build the Release variant via npm. Then install and launch the vega app on my Fire TV device using vega sdk` | Builds and runs the Shaka demo app (Shaka 4.6.18) |
-| 2 | `What Shaka Player versions are available for Vega ?` | Lists the Vega-patched Shaka versions and detects the current one |
+| 2 | `What Shaka Player versions are available for Vega ?` | Lists the Vega supported Shaka versions |
 | 3 | `Upgrade Shaka Player in this app to 4.8.5-r1.7 — download the Vega release, build it, swap the dist into the app, then clean build and run on my Fire TV device.` | Downloads, builds, swaps in the new Shaka, rebuilds, and runs |
 
 ## Prerequisites
@@ -61,7 +61,7 @@ The agent uses the MCP server to read the official Vega media-player documentati
 | **4.6.18** | r2.16 | What the app ships with today |
 | **4.3.6** | r2.5 | Headless JS playback support |
 
-**🏁 Checkpoint:** The agent confirms the app is on 4.6.18 and that newer Vega-patched versions (including 4.8.5-r1.7) are available.
+**🏁 Checkpoint:** The agent lists official  Vega supported Shaka palyer versions (including 4.8.5-r1.7).
 
 ---
 
