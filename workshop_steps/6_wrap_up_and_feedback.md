@@ -34,19 +34,23 @@ Your agent will append a summary to `PROMPT_WORKSHOP_LOG.md` covering overall st
 
 ## Share Feedback
 
-Please share your feedback about all the sessions we had today and the workhop.
->
-> 📋 [Amazon Devices Builder Tools MCP Feedback Survey]([https://amazon6.qualtrics.com/jfe/form/SV_d51OLHD395gvWU6])
->
+Please share your feedback about today's sessions and the workshop overall — use the link or scan the QR code below:
 
-Beyond the survey above, you can send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant anytime. Ask your agent for the feedback survey:
+📋 [Fire Tv Developer Day 2026 - survey](https://amazon6.qualtrics.com/jfe/form/SV_d51OLHD395gvWU6)
+
+<p align="center">
+  <img src="../images/survey-qr.png" width="220" alt="QR code for the feedback survey">
+  <br>
+  <em>Scan to open the survey</em>
+</p>
+
+You can also send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant at any time. Ask your agent for the feedback survey:
 
 ```
 Give feedback about the MCP server
 ```
 
-Your assistant will reply with a link to a short (~30 second) survey. Your input directly shapes how these tools improve.
-Click the link the assistant gives you to open the survey.
+Your assistant will reply with a link to a short (~30 second) survey, which you can click to open. Your input directly shapes how these tools improve.
 
 ## Thank You!
 
