@@ -4,7 +4,7 @@
 
 We'd love to hear your thoughts! Please take a moment to fill out our feedback survey:
 
-👉 [Workshop Feedback Survey](https://amazon6.qualtrics.com/jfe/form/SV_eaptj5g7QdzLj2S)
+👉 [Workshop Feedback Survey](https://amazon6.qualtrics.com/jfe/form/SV_d51OLHD395gvWU6)
 
 ## What We Covered Today
 
@@ -29,30 +29,23 @@ If you set up prompt tracking at the start of the workshop (the bootstrap prompt
 Wrap up my feedback
 ```
 
-Your agent will append a summary to `PROMPT_WORKSHOP_LOG.md` covering overall stats, friction hotspots, what worked well, recommendations, and a timeline of the session. Share that file with the workshop team — it's the most useful feedback we can get.
+Your agent will append a summary to `PROMPT_WORKSHOP_LOG.md` covering overall stats, friction hotspots, what worked well, recommendations, and a timeline of the session. Share that file with the workshop team — it's the most useful feedback we can get. Share this file to Senthil if you have additinal feedback.
 
-> 💡 **Tip:** Keep this summary handy — you can paste it into the feedback survey in the next section when you select answers 2, 3, or 4.
 
 ## Share Feedback
 
-Beyond the survey above, you can send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant. Ask your agent for the feedback survey:
+Please share your feedback about all the sessions we had today and the workhop.
+>
+> 📋 [Amazon Devices Builder Tools MCP Feedback Survey]([https://amazon6.qualtrics.com/jfe/form/SV_d51OLHD395gvWU6])
+>
+
+Beyond the survey above, you can send feedback about the Amazon Devices Builder Tools MCP server directly from your AI coding assistant anytime. Ask your agent for the feedback survey:
 
 ```
 Give feedback about the MCP server
 ```
 
 Your assistant will reply with a link to a short (~30 second) survey. Your input directly shapes how these tools improve.
-
-For example, the assistant will respond with something like this:
-
-> Thank you for offering to provide feedback!
->
-> Please use this link to share your feedback through a 30 second survey:
->
-> 📋 [Amazon Devices Builder Tools MCP Feedback Survey](https://amazon6.qualtrics.com/jfe/form/SV_e9G62OTPKvYr0HA?&agent=Kiro&model=claude-opus-4.8&mcp_version=1.0.2&workflow=documentation)
->
-> Your feedback is valuable and helps Amazon improve the developer experience.
-
 Click the link the assistant gives you to open the survey.
 
 ## Thank You!
